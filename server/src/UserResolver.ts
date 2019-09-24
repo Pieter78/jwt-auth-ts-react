@@ -83,6 +83,13 @@ export class UserResolver {
     return true
   }
 
+  @Mutation(() => Boolean)
+  async logout(@Ctx() { res }: MyContext) {
+    sendRefreshToken(res, '')
+
+    return true
+  }
+
   // Needs to be refactored, for testing only
   @Mutation(() => Boolean)
   async revokeRefreshTokensForUser(@Arg('userId', () => Int) userId: number) {
